@@ -1,0 +1,93 @@
+.sidenav{
+    height: 100%;
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0%;
+    background-color: #111;
+    overflow: hidden;
+    padding-top: 20px;
+
+}
+
+div{
+    display: block;
+    unicode-bidi: isolate;
+}
+
+.main {
+    height: 100%;
+    width: 10%;
+    position: fixed;
+    z-index: 1;
+    top: 0%;
+    right: 0%;
+    background-color: #111;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+#celeste{
+    height: 25%;
+    position:fixed;
+    top: 0%;
+    left: 20%;
+    right: 10%;
+    background-color: aqua;
+    padding-top: 0%;
+}
+
+#amarillo{
+    height: 25%;
+    position:fixed;
+    top: 25%;
+    left: 20%;
+    right: 10%;
+    background-color: yellow;
+    padding-top: 0%;
+}
+
+#naranja{
+    height: 25%;
+    position:fixed;
+    top: 50%;
+    left: 20%;
+    right: 10%;
+    background-color: orange;
+    padding-top: 0%;
+}
+#rojo{
+    height: 25%;
+    position:fixed;
+    top: 75%;
+    left: 20%;
+    right: 10%;
+    background-color: red;
+    padding-top: 0%;
+}
+.menu{
+    width: 100%;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0%;
+    margin: 0%;
+}
+.menu ul li {
+    margin-bottom: 10px;
+}
+
+.menu ul li a{
+    display: block;
+    text-decoration: none;
+    color: grey;
+}
+
+.menu ul li a:hover{
+    color: white;
+    
+}
