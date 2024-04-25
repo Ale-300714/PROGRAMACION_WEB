@@ -113,7 +113,7 @@
             if (!/^[a-zA-Z\s]+$/.test(nombre)) {
                 var modal = new bootstrap.Modal(document.getElementById('validationModal'));
                 var modalBody = document.getElementById('validationMessage');
-                modalBody.innerHTML = "El nombre debe contener solo letras y espacios";
+                modalBody.innerHTML = "El nombre debe contener solo letras";
                 modal.show();
                 return false;
             }
