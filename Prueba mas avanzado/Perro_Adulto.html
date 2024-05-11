@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contáctanos</title>
+    <title>Gato Cachorro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <style>
-        body {
+        .custom-navbar-color {
+            padding: 5px 0;
             background-color: rgb(110, 207, 207);
+        }   
+
+        #navbarNav ul li a:hover {
+            color: black;
+            background-color: rgb(187, 247, 227);
         }
-        .logo {
-            margin: 20px;
+
+        .imagen1 {
+            height: 85%;
+            width: 100%;
         }
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
+        
+        .navbar-nav.search-form {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .contacto-info {
-            border: 10px solid #071a2e; 
-            font-family: 'Trebuchet MS', sans-serif;
-            font-weight: bold;
-            margin-top: 20px;
-            padding: 10px;
+
+        .navbar-nav.search-form .btn {
+            margin-left: 10px;
         }
-        .foto img {
-            max-width: 100%;
-            height: auto;
-        }
+
         .dropdown-menu .dropdown-submenu {
             position: relative;
         }
@@ -51,7 +56,6 @@
         .dropdown-menu .submenu a {
             text-align: left;
         }
-
     </style>
 </head>
 <body>
@@ -124,62 +128,50 @@
             </div>
         </div>
     </nav>
-
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-6 mx-auto">
-                <div class="foto"><img src="imagenes/contacto_perro.jpg" alt=""></div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <div class="card" style="width: 25rem;">
+                    <img src="imagenes/Alimento_Gatito.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Comida para tu Perro</h5>
+                        <p class="card-text">Encontraran diferentes tipos de comida para tu Perro</p>
+                        <a href="comida_gato_adulto.html" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 mx-auto">
-                <form action="Pagina Principal.html" class="form-container">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputNombre" placeholder="***">
-                        <label for="floatingInputNombre">Nombre</label>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <div class="card" style="width: 25rem;">
+                    <img src="imagenes/Juguete_Pelotas.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Juguetes para tu Perro</h5>
+                        <p class="card-text">Encontraran diferentes tipos de Juguetes para tu Perro</p>
+                        <a href="Jugetes.html" class="btn btn-primary">Ir</a>
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputApellido" placeholder="****">
-                        <label for="floatingInputApellido">Apellido</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputTelefono" placeholder="****">
-                        <label for="floatingInputTelefono">Teléfono</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInputEmail" placeholder="****">
-                        <label for="floatingInputEmail">Email</label>
-                    </div>    
-                    <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option selected>Solicitud</option>
-                            <option value="1">Consulta stock</option>
-                            <option value="2">Compra Mayorista</option>
-                            <option value="3">Consulta despacho</option>
-                            <option value="4">Reclamo </option>
-                        </select>
-                        <label for="floatingSelect">Seleccione una opción</label>
-                        <br>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <textarea class="form-control" placeholder="Ingrese su mensaje (máximo 200 palabras)" id="floatingTextarea" style="height: 150px;"></textarea>
-                        <label for="floatingTextarea">Mensaje</label>
-                    </div>
-                    <br>
-                    <button type="submit" class="btn btn-primary" >Enviar</button>
-                </form>
+                </div>
             </div>
-            <div class="col-lg-6 mx-auto">
-                <div class="contacto-info">
-                    <h5>Información de contacto:</h5>
-                    <p>Teléfono: +56979968521</p>
-                    <p>Email: consultas@somosmascotas.cl</p>
-                    <p>Dirección: Antonio Varas 666, Providencia, Región Metropolitana   </p>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <div class="card" style="width: 25rem;">
+                    <img src="imagenes/ropa.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Vestimenta para tu Perro</h5>
+                        <p class="card-text">Encontraran diferentes tipos de Ropa para tu Perro</p>
+                        <a href="Vestimenta.html" class="btn btn-primary">Ir</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-5">
+                <div class="card" style="width: 25rem;">
+                    <img src="imagenes/OFERTA-ESPECIAL.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Ofertas</h5>
+                        <p class="card-text">¡Aqui Encontraras los Productos con mejores opiniones y los mejores descuentos.!</p>
+                        <a href="Ofertas Especiales.html" class="btn btn-primary">Ir</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-        
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
