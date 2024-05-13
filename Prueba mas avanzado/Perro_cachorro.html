@@ -8,7 +8,7 @@
     <style>
         .custom-navbar-color {
             padding: 5px 0;
-            background-color: rgb(110, 207, 207);
+            background-color: #6ecfcf
         }   
 
         #navbarNav ul li a:hover {
@@ -22,10 +22,8 @@
         }
         
         .navbar-nav.search-form {
-            flex-grow: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-end;
+            
         }
 
         .navbar-nav.search-form .btn {
@@ -55,6 +53,34 @@
         }
         .dropdown-menu .submenu a {
             text-align: left;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-title {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .card-text {
+            color: #666;
+        }
+
+        .btn-primary {
+            background-color: #4ca1a1;
+            border-color: #4ca1a1;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #2a7e7e;
+            border-color: #2a7e7e;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
