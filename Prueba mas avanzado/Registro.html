@@ -142,7 +142,7 @@
         </div>
           
         <div class="form-floating mb-3">
-            <input type="tel" class="form-control" id="telefono" placeholder="****" required>
+            <input type="text" class="form-control" id="telefono" placeholder="****" required>
             <label for="telefono">Teléfono</label>
         </div>
           
@@ -176,11 +176,15 @@
         <div class="form-floating mb-3">
             <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com" required>
             <label for="email">Correo Electrónico</label>
+            
         </div>
           
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password" placeholder="Password" minlength="8" maxlength="20" required>
-            <label for="password">Contraseña (8-20 caracteres)</label>
+            <label for="password">Contraseña (8-20 caracteres)
+            </label>
+            <button type="button" id="Mostrar_Contraseña" onclick="togglePassword()"></button>
+            
         </div>
           
         <button type="submit" class="btn btn-primary">Registrarse</button>
@@ -188,21 +192,23 @@
     </div>
     <!-- Modal para mostrar mensaje de validación -->
     <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="validationModalLabel">Error de Validación</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="validationMessage">
-                    <!-- Aquí se mostrará el mensaje de validación -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <div class="modal-dialog modal-dialog-centered">
+           <div class="modal-content">
+               <div class="modal-header" style="background-color: #6ecfcf;">
+                   <h5 class="modal-title text-dark" id="validationModalLabel">Error de Validación</h5>
+                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body">
+                   <p class="text-danger" id="validationMessage">
+                   <!-- Aquí se mostrará el mensaje de validación -->
+                   </p>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+               </div>
+           </div>
+       </div>
+   </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
