@@ -1,4 +1,12 @@
 /* Estilos para la imagen del producto */
+.Acana{
+margin-top: 60px;
+margin-left: 100px;
+height: 350px;
+
+    
+}
+
 .Comida {
     width: 100%;
     height: auto;
@@ -14,6 +22,7 @@
 /* Estilos para la descripción del producto */
 .product-description {
     text-align: justify;
+    margin-top: 40px;;
 }
 
 /* Estilos para el precio y la disponibilidad */
