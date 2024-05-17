@@ -7,13 +7,13 @@ function validateForm() {
     var modal = new bootstrap.Modal(document.getElementById('validationModal'));
     var modalBody = document.getElementById('validationMessage');
 
-    if (!/^[a-zA-Z\s]+$/.test(nombre)) {
+    if (!/^[a-zA-Z]+$/.test(nombre)) {
         modalBody.innerHTML = "El nombre debe contener solo letras";
         modal.show();
         return false;
     }
 
-    if (!/^[a-zA-Z\s]+$/.test(apellido)) {
+    if (!/^[a-zA-Z]+$/.test(apellido)) {
         modalBody.innerHTML = "El Apellido debe contener solo letras";
         modal.show();
         return false;

@@ -1,0 +1,54 @@
+/* Estilos para la imagen del producto */
+.Comida {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Agrega bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Agrega una sombra suave */
+}
+
+/* Estilos para el contenedor de la imagen */
+.comida-container {
+    margin-bottom: 20px;
+}
+
+/* Estilos para la descripción del producto */
+.product-description {
+    text-align: justify;
+}
+
+/* Estilos para el precio y la disponibilidad */
+.product-description p {
+    margin-bottom: 5px;
+    color: #333; /* Color del texto */
+}
+
+/* Estilos para el botón de agregar al carrito */
+.btn-primary {
+    margin-top: 20px;
+    background-color: #198754; /* Color de fondo */
+    border-color: #198754; /* Color del borde */
+}
+
+.btn-primary:hover {
+    background-color: #146c43; /* Cambio de color al pasar el cursor */
+    border-color: #146c43; /* Cambio de color del borde al pasar el cursor */
+}
+
+.btn-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.5); /* Efecto de enfoque */
+}
+
+/* Estilos para el formulario de búsqueda en la barra de navegación */
+.navbar-nav .form-control {
+    width: 300px;
+}
+
+/* Estilos para el ícono del carrito en la barra de navegación */
+.navbar-nav .nav-link img {
+    margin-top: -15px;
+}
+
+/* Estilos para el logotipo de la marca en la barra de navegación */
+.navbar-brand img {
+    margin-top: -10px;
+}
