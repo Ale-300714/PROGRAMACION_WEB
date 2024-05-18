@@ -161,6 +161,80 @@ $(document).ready(function(){
     $("#ocultar4").click(function(){
         ocultardatosraza4();
     });
+
+    function cargarDatosRaza5() {
+        $("#raza5 tbody").empty();
+
+        $.get("https://dogapi.dog/api/v2/breeds",
+            function(data){
+                $.each(data.data, function(i, item){
+                    if (item.id === "087979f3-1c45-4d8a-a153-462bf5ea379e") {
+                        var id = item.id;
+                        var name = item.attributes.name;
+                        var description = item.attributes.description;
+                        $("#raza5 tbody").append(
+                            "<tr>" +
+                                "<td>"+id+"</td>" +
+                                "<td>"+name+"</td>" +
+                                "<td>"+description+"</td>" +
+                            "</tr>"
+                        );
+                    }
+                });
+            });
+        $("#raza5").show();
+    }
+
+    
+    $("#perro5").click(function(){
+        cargarDatosRaza5();
+    });
+
+    function ocultardatosraza5(){
+        $("#raza5").hide();
+    }
+
+    
+    $("#ocultar5").click(function(){
+        ocultardatosraza5();
+    });
+
+    function cargarDatosRaza6() {
+        $("#raza6 tbody").empty();
+
+        $.get("https://dogapi.dog/api/v2/breeds",
+            function(data){
+                $.each(data.data, function(i, item){
+                    if (item.id === "dbff689b-8370-4b6a-9306-215aba549102") {
+                        var id = item.id;
+                        var name = item.attributes.name;
+                        var description = item.attributes.description;
+                        $("#raza6 tbody").append(
+                            "<tr>" +
+                                "<td>"+id+"</td>" +
+                                "<td>"+name+"</td>" +
+                                "<td>"+description+"</td>" +
+                            "</tr>"
+                        );
+                    }
+                });
+            });
+        $("#raza6").show();
+    }
+
+    
+    $("#perro6").click(function(){
+        cargarDatosRaza6();
+    });
+
+    function ocultardatosraza6(){
+        $("#raza6").hide();
+    }
+
+    
+    $("#ocultar6").click(function(){
+        ocultardatosraza6();
+    });
     // Mostrar la foto del primer perro
     var image1 = "https://www.thesprucepets.com/thmb/xnymOFVuv4F0O7AdLK6K6mozkkg=/2124x1411/filters:fill(auto,1)/CaucasianOvcharka-GettyImages-999579156-63ec1efdf2e1420dabdbcf2e83a70475.jpg"; // URL de la imagen obtenida manualmente
     $("#foto_perro1").html("<img src='"+image1+"' alt='Foto de Perro 1' style='max-width: 300px;'>");
@@ -174,5 +248,12 @@ $(document).ready(function(){
 
     var image4 = "https://breedadvisor.com/wp-content/uploads/2020/02/HOKKAIDO-PUPPY.jpg"; // URL de la imagen obtenida manualmente
     $("#foto_perro4").html("<img src='"+image4+"' alt='Foto de Perro 2' style='max-width: 300px;'>");
+
+    var image5 = "http://www.japaneseterrier.org/uploads/1/4/1/8/141891390/dsc-1546_orig.jpg"; // URL de la imagen obtenida manualmente
+    $("#foto_perro5").html("<img src='"+image5+"' alt='Foto de Perro 2' style='max-width: 300px;'>");
+
+    var image6 = "https://www.akc.org/wp-content/uploads/2017/11/Hanoverian-Scenthound.1.jpg"; // URL de la imagen obtenida manualmente
+    $("#foto_perro6").html("<img src='"+image6+"' alt='Foto de Perro 2' style='max-width: 300px;'>");
+    
     
 });

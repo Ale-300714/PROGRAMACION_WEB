@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css_de_navbar.css">
     <script src="Consumo_de_api.js"></script>
     <link rel="stylesheet" href="css_de_Nuestros_clientes.css">
+    <script type="text/javascript" src="dropmenu.js"></script>
 
 </head>
 <body>
@@ -31,20 +32,20 @@
                         <!-- Submenu de Productos -->
                         <ul class="dropdown-menu submenu" aria-labelledby="navbarDropdownProductos">
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#" >Perros</a>
-                                <ul class=" submenu">
-                                    <a class="dropdown-item" href="Perro_Adulto.html">Adulto</a>
-                                    <a class="dropdown-item" href="Perro_cachorro.html">Cachorro</a>
+                                <a class="dropdown-item dropdown-toggle" href="#">Perros</a>
+                                <ul class="dropdown-menu"> 
+                                    <li><a class="dropdown-item" href="Perro_Adulto.html">Adulto</a></li>
+                                    <li><a class="dropdown-item" href="Perro_cachorro.html">Cachorro</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item dropdown-toggle" href="#" >Gatos</a>
-                                <ul class=" submenu">
-                                    <a class="dropdown-item" href="Gato_Adulto.html">Adulto</a>
-                                    <a class="dropdown-item" href="Gato_cachorro.html">Cachorro</a>
+                                <a class="dropdown-item dropdown-toggle" href="#">Gatos</a>
+                                <ul class="dropdown-menu"> 
+                                    <li><a class="dropdown-item" href="Gato_Adulto.html">Adulto</a></li>
+                                    <li><a class="dropdown-item" href="Gato_cachorro.html">Cachorro</a></li>
                                 </ul>
                             </li>
-
+                            
                         </ul>
                     </li>
                     
@@ -84,84 +85,124 @@
             </div>
         </div>
     </nav>
-    
-    <h1>Algunos de nuestros clientes </h1>
-    <div id="foto_perro1"></div>
-    <button id="perro1">Mostrar Datos de la Raza</button>
-    <button id="ocultar1">Ocultar Datos de la Raza</button>
-    <table id="raza1" style="display: none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas de datos -->
-        </tbody>
-    </table>
-    <div id="foto_perro2"></div> 
-    <button id="perro2">Mostrar Datos de la Raza</button>
-    <button id="ocultar2">Ocultar Datos de la Raza</button>
-    <table id="raza2"  style="display: none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas de datos -->
-        </tbody>
-    </table>
-    <div id="foto_perro3"></div> 
-    <button id="perro3">Mostrar Datos de la Raza</button>
-    <button id="ocultar3">Ocultar Datos de la Raza</button>
-    <table id="raza3"  style="display: none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas de datos -->
-        </tbody>
-    </table>
-    <div id="foto_perro4"></div> 
-    <button id="perro4">Mostrar Datos de la Raza</button>
-    <button id="ocultar4">Ocultar Datos de la Raza</button>
-    <table id="raza4"  style="display: none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas de datos -->
-        </tbody>
-    </table>
 
-    <div id="foto_perro5"></div> 
-    <button id="perro5">Mostrar Datos de la Raza</button>
-    <button id="ocultar5">Ocultar Datos de la Raza</button>
-    <table id="raza5" style="display: none;">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí se agregarán las filas de datos -->
-        </tbody>
-    </table>
+    <div class="container">
+        <h1>Algunos de nuestros clientes</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="foto_perro1"></div>
+                <div id="raza1" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="raza1_body">
+                        </tbody>
+                    </table>
+                </div>
+                <button id="perro1" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                <button id="ocultar1" class="btn btn-custom">Ocultar Datos de la Raza</button>
+            </div>
+            <!-- Repite la misma estructura para los perros 2 y 3 -->
+            <div class="col-md-4">
+                <div id="foto_perro2"></div>
+                <div id="raza2" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="raza2_body">
+                        </tbody>
+                    </table>
+                </div>
+                <button id="perro2" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                <button id="ocultar2" class="btn btn-custom">Ocultar Datos de la Raza</button>
+            </div>
+            <div class="col-md-4">
+                <div id="foto_perro3"></div>
+                <div id="raza3" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="raza3_body">
+                        </tbody>
+                    </table>
+                </div>
+                <button id="perro3" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                <button id="ocultar3" class="btn btn-custom">Ocultar Datos de la Raza</button>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="foto_perro4"></div>
+                    <div id="raza4" style="display: none;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="raza4_body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="perro4" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                    <button id="ocultar4" class="btn btn-custom">Ocultar Datos de la Raza</button>
+                </div>
+                <div class="col-md-4">
+                    <div id="foto_perro5"></div>
+                    <div id="raza5" style="display: none;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="raza5_body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="perro5" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                    <button id="ocultar5" class="btn btn-custom">Ocultar Datos de la Raza</button>
+                </div>
+                <div class="col-md-4">
+                    <div id="foto_perro6"></div>
+                    <div id="raza6" style="display: none;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody id="raza6_body">
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="perro6" class="btn btn-custom">Mostrar Datos de la Raza</button>
+                    <button id="ocultar6" class="btn btn-custom">Ocultar Datos de la Raza</button>
+                </div>
+            </div>
+        </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
