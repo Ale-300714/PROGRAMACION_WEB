@@ -14,13 +14,13 @@ function validateForm() {
     }
 
     if (!/^[a-zA-Z]+$/.test(apellido)) {
-        modalBody.innerHTML = "El Apellido debe contener solo letras";
+        modalBody.innerHTML = "El apellido debe contener solo letras";
         modal.show();
         return false;
     }
     
     if (!/^\d{9}$/.test(telefono)) {
-        modalBody.innerHTML = "El numero de telefono debe tener exactamente 9 numeros y sin espacios";
+        modalBody.innerHTML = "El número de teléfono debe tener exactamente 9 números y sin espacios";
         modal.show();
         return false;
     }
