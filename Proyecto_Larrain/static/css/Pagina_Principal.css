@@ -16,3 +16,12 @@
 .navbar-custom .dropdown-item:hover {
     background-color: #003060; 
 }
+
+.carousel-inner {
+    height: 400px; 
+}
+.carousel-inner img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
