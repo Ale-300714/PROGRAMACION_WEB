@@ -20,11 +20,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        <a class="nav-link active" aria-current="page" href="{%url 'PaginaPrincipal' %}">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Productos</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#">Ofertas</a>
                     </li>
@@ -36,7 +34,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Quienes Somos</a>
+                        <a class="nav-link" href="#">Quienes Somos</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -52,9 +50,11 @@
                     </li>
                     
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form method="get" action="">
+                    <div class="input-group mb-3">
+                        <input class="form-control" type="text" name="buscar_producto" placeholder="Buscar por nombre" value="{{ buscar_producto }}">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -73,7 +73,7 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="{% static 'imagenes/Oferta.jpg' %}" alt="Ofertas">
+                <img src="{% static 'imagenes/Audifonos.png' %}" alt="Ofertas">
               </div>
               <div class="carousel-item">
                 <img src="https://universomagico.com.uy/wp-content/uploads/2023/09/1.png"  alt="Gato">
@@ -93,6 +93,57 @@
               <span class="visually-hidden">Next</span>
             </button>
           
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <form method="get" action="">
+            <div class="input-group mb-3">
+                <select class="form-select" name="tipo_producto">
+                    <option value="">Todos los Productos</option>
+                    <option value="Altavoz">Altavoces</option>
+                    <option value="Llaveros">Llaveros</option>
+                    <option value="Visor Laser">Visor Laser</option>
+                    <option value="Auriculares">Auriculares</option>
+                    <option value="Mouse">Mouse</option>
+                </select>
+                <button class="btn btn-outline-secondary" type="submit">Filtrar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            {% if productos %}
+                {% for producto in productos %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        {% if producto.imagen %}
+                            <img class="card-img-top" src="{{ producto.imagen.url }}" alt="{{ producto.nombre_producto }}">
+                        {% else %}
+                            <img class="card-img-top" src="{% static 'img/placeholder.png' %}" alt="Placeholder">
+                        {% endif %}
+                        <div class="card-body">
+                            <h4 class="card-title">{{ producto.nombre_producto }}</h4>
+                            <p class="card-text">{{ producto.descripcion }}</p>
+                            <h5>Precio: ${{ producto.precio }}</h5>
+                            <p>Stock: {{ producto.stock }}</p>
+                            <button class="btn btn-outline-primary" type="submit">Comprar</button>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                    <!-- Mostrar el mensaje de producto no encontrado -->
+                    <div class="col-12">
+                        <p>Producto no encontrado.</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <!-- Mostrar el mensaje de no hay productos disponibles -->
+                <div class="col-12">
+                    <p>No hay productos disponibles.</p>
+                </div>
+            {% endif %}
         </div>
     </div>
 
