@@ -21,3 +21,7 @@ def Pagina_Principal(request):
         productos = []
 
     return render(request, 'gestion/Pagina_Principal.html', {'productos': productos, 'tipo_producto': tipo_producto, 'buscar_producto': buscar_producto})
+
+def quienes_somos(request):
+    context={}
+    return render(request, 'gestion/quienes_somos.html', context)
