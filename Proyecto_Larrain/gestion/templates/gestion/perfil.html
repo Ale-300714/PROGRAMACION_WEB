@@ -1,0 +1,48 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<div class="container">
+    {% if user %}
+        <h1>Perfil</h1>
+        <form action="{% url 'perfil' %}" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="first_name" class="form-label">Nombre</label>
+                {{ form.first_name }}
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Apellido Paterno</label>
+                {{ form.last_name }}
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo</label>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                {{ form.Cliente.direccion }}
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                {{ form.telefono }}
+            </div>
+            <div class="mb-3">
+                <label for="contraseña" class="form-label">Contraseña</label>
+                {{ form.contraseña }}
+            </div>
+            
+            <div class="d-grid gap-2">
+                <input type="submit" class="btn btn-primary" name="opcion" value="Guardar Cambios">
+            </div>
+        </form>
+        <br><br>
+        <div id="idMensaje">
+            {% if mensaje %}
+                {{ mensaje }}
+            {% endif %}
+        </div>
+        <br>
+        <a href="{% url 'PaginaPrincipal' %}">Volver</a>
+    {% endif %}
+</div>
+{% endblock %}
