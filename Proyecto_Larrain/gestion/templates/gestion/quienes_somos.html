@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quienes Somos</title>
+    <title>¿Quienes Somos?</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/quienes.css' %}">
 </head>
 <body>
     <h1>¿Quienes Somos?</h1>
@@ -23,9 +23,31 @@
     <br>
     <h2>Redes Sociales:</h2>
     <br>
-    <div style="text-align: left;">
-        <img src="{% static 'imagenes/Ig_icon.png' %}" 
-        alt="">
+    <div class="social-media">
+        <div class="social-item">
+            <img 
+            src="{% static 'imagenes/Ig_icon.png' %}" 
+            alt=""
+            width="75"
+            height="75">
+            <p>@Impor_Larrain</p>
+        </div>
+        <div class="social-item">
+            <img 
+            src="{% static 'imagenes/Whatsapp_icon.png' %}" 
+            alt=""
+            width="75"
+            height="75">
+            <p>+56938728745</p>
+        </div>
+        <div class="social-item">
+            <img
+            src="{% static 'imagenes/gmail_icon.png' %}" 
+            alt=""
+            width="75"
+            height="75">
+            <p>Impor_Larrain@gmail.com</p>
+        </div>
     </div>        
 </body>
 </html>

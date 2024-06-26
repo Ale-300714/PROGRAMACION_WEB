@@ -25,3 +25,7 @@ def Pagina_Principal(request):
 def quienes_somos(request):
     context={}
     return render(request, 'gestion/quienes_somos.html', context)
+
+def donde_encontrarnos(request):
+    context={}
+    return render(request, 'gestion/donde_encontrarnos.html', context)
