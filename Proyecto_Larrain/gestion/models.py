@@ -56,6 +56,7 @@ class Oferta(models.Model):
     precio_oferta= models.DecimalField(max_digits=10,decimal_places=2)
     fecha_inicio = models.DateField()
     fecha_fin= models.DateField()
+    stock_oferta = models.IntegerField()
 
     def __str__(self):
         return f"Oferta {self.id} - {self.producto.nombre_producto}"

@@ -1,0 +1,36 @@
+{% extends 'gestion/base.html' %}
+
+{% block title %}Ofertas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Ofertas</h1>
+    <div class="row">
+        {% for oferta in ofertas %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                {% if oferta.producto.imagen %}
+                <img src="{{ oferta.producto.imagen.url }}" class="card-img-top" alt="{{ oferta.producto.nombre_producto }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ oferta.producto.nombre_producto }}</h5>
+                    <p class="card-text">{{ oferta.producto.descripcion }}</p>
+                    <h5 class="card-text">
+                        <del>${{ oferta.producto.precio }}</del> ${{ oferta.precio_oferta }}
+                    </h5>
+                    <h5 class="card-text">
+                        <del>Stock antes :{{ oferta.producto.stock }}</del> Stock Ahora : {{ oferta.stock_oferta }}
+                    </h5>
+                    <p class="card-text">
+                        <small class="text-muted">Oferta válida desde {{ oferta.fecha_inicio }} hasta {{ oferta.fecha_fin }}</small>
+                    </p>
+                    
+                    <button type="submit" class="btn btn-primary">Comprar</button>
+            
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

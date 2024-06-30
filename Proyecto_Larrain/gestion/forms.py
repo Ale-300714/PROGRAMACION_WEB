@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 from django.forms import ModelForm
-from .models import Cliente
+from .models import Oferta
 class UsuarioForm(ModelForm):
     class Meta:
         model = User
@@ -13,11 +13,15 @@ class UsuarioForm(ModelForm):
                    'username':forms.TextInput(attrs={'class':'form-control'}),
                    'password':forms.PasswordInput(attrs={'class':'form-control'}),
                    }
-class ClienteForm(forms.ModelForm):
+
+class OfertaForm(ModelForm):
     class Meta:
-        model = Cliente
-        fields = ['direccion', 'telefono']
+        model = Oferta
+        fields = ['producto','precio_oferta','fecha_inicio','fecha_fin', 'stock_oferta']
         widgets = {
-            'direccion': forms.TextInput(attrs={'class': 'form-control'}),
-            'telefono': forms.TextInput(attrs={'class': 'form-control'}),
-        }
+            'producto': forms.Select(attrs={'class': 'form-control'}),
+            'precio_oferta': forms.NumberInput(attrs={'class': 'form-control'}),
+            'fecha_incio' : forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'fecha_fin' : forms.DateInput(attrs={'class': 'form-control', 'type':'date'}),
+            'stock_oferta': forms.NumberInput(attrs={'class': 'form-control'}),
+        }   

@@ -1,10 +1,12 @@
 from django.shortcuts import render , redirect
-from .models import Productos
+from .models import Productos , Oferta
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import  UsuarioForm 
+from .forms import  UsuarioForm , OfertaForm
+from django.utils import timezone
+
 # Create your views here.
 
 def Pagina_Principal(request):
@@ -27,6 +29,7 @@ def Pagina_Principal(request):
 
 def quienes_somos(request):
     context={}
+    Pagina_Principal
     return render(request, 'gestion/quienes_somos.html', context)
 
 def donde_encontrarnos(request):
@@ -92,3 +95,22 @@ def registro_cliente(request):
         'user_form': user_form,
     }
     return render(request, 'gestion/registro.html', context)
+
+def ofertas(request):
+    hoy = timezone.now().date()
+    ofertas = Oferta.objects.filter(fecha_inicio__lte=hoy, fecha_fin__gte=hoy)
+    print(f"Ofertas activas: {ofertas}")
+    return render(request, 'gestion/ofertas.html', {'ofertas': ofertas})
+
+def agregar_ofertas(request):
+    if request.method =='POST':
+        form = OfertaForm(request.POST) 
+        if form.is_valid():
+            form.save()
+            return redirect('ofertas')
+    else:
+        form= OfertaForm()
+    return render(request,'gestion/agregar_ofertas.html', {'form':form})
+
+
+
