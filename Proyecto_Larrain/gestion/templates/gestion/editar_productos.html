@@ -1,0 +1,70 @@
+{% extends 'gestion/base.html' %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Producto</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    {% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Editar Producto</h1>
+        <form method="POST" enctype="multipart/form-data" class="shadow p-4 rounded">
+            {% csrf_token %}
+            <!-- Nombre del producto -->
+            <div class="form-group">
+                <label for="id_nombre_producto">Nombre del Producto:</label>
+                <input type="text" class="form-control" id="id_nombre_producto" name="nombre_producto" value="{{ producto.nombre_producto }}" required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label for="id_descripcion">Descripción:</label>
+                <textarea class="form-control" id="id_descripcion" name="descripcion" rows="4" required>{{ producto.descripcion }}</textarea>
+            </div>
+
+            <!-- Precio -->
+            <div class="form-group">
+                <label for="id_precio">Precio:</label>
+                <input type="number" class="form-control" id="id_precio" name="precio" value="{{ producto.precio }}" step="0.01" required>
+            </div>
+
+            <!-- Stock -->
+            <div class="form-group">
+                <label for="id_stock">Stock:</label>
+                <input type="number" class="form-control" id="id_stock" name="stock" value="{{ producto.stock }}" required>
+            </div>
+
+            <!-- Tipo de producto -->
+            <div class="form-group">
+                <label for="id_tipo_producto">Tipo de Producto:</label>
+                <input type="text" class="form-control" id="id_tipo_producto" name="tipo_producto" value="{{ producto.tipo_producto }}" required>
+            </div>
+
+            <!-- Imagen actual -->
+            {% if producto.imagen %}
+            <div class="form-group">
+                <label>Imagen Actual:</label><br>
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre_producto }} Imagen" class="img-fluid" style="max-width: 300px;">
+            </div>
+            {% endif %}
+
+            <!-- Campo para cargar una nueva imagen -->
+            <div class="form-group">
+                <label for="id_imagen">Cambiar Imagen:</label>
+                <input type="file" class="form-control-file" id="id_imagen" name="imagen">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+    {% endblock %} 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -15,6 +15,7 @@ class Cliente(models.Model):
 
 
 class Productos(models.Model):
+    id = models.AutoField(primary_key=True)
     nombre_producto = models.CharField(max_length=200)
     descripcion = models.TextField()
     precio = models.DecimalField(max_digits=10, decimal_places=2)

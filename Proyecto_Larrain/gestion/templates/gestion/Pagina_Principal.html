@@ -80,6 +80,9 @@
                                 <h5>Precio: ${{ producto.precio }}</h5>
                                 <p>Stock: {{ producto.stock }}</p>
                                 <button class="btn btn-outline-primary" type="submit">Comprar</button>
+                                {% if supervisor %}
+                                    <a href="{% url 'editar_productos' producto.id %}" class="btn btn-outline-primary">Editar</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

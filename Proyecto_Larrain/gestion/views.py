@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import render , redirect , get_object_or_404
 from .models import Productos , Oferta
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -37,7 +37,13 @@ def Pagina_Principal(request):
     else:
         es_agente = False
 
-    return render(request, 'gestion/Pagina_Principal.html', {'productos': productos, 'tipo_producto': tipo_producto, 'buscar_producto': buscar_producto,'es_agente': es_agente})
+    User = get_user_model()
+    if request.user.is_authenticated and request.user.groups.filter(name='Supervisor_Local').exists():
+        supervisor = True
+    else:
+        supervisor = False
+
+    return render(request, 'gestion/Pagina_Principal.html', {'productos': productos, 'tipo_producto': tipo_producto, 'buscar_producto': buscar_producto,'es_agente': es_agente, 'supervisor':supervisor})
 
 def quienes_somos(request):
     context={}
@@ -100,7 +106,7 @@ def registrar_cliente(request):
     else:
         form = ClienteForm()
     return render(request, 'gestion/registro.html', {'form': form})
-@login_required
+
 def ofertas(request):
     hoy = timezone.now().date()
     ofertas = Oferta.objects.filter(fecha_inicio__lte=hoy, fecha_fin__gte=hoy)
@@ -117,3 +123,21 @@ def agregar_ofertas(request):
         form= OfertaForm()
     return render(request,'gestion/agregar_ofertas.html', {'form':form})
 
+
+def editar_productos(request, pk):
+    producto = get_object_or_404(Productos, pk=pk)
+    if request.method == 'POST':
+        # Aquí procesas el formulario enviado y guardas los cambios
+        producto.nombre_producto = request.POST['nombre_producto']
+        producto.descripcion = request.POST['descripcion']
+        producto.precio = request.POST['precio']
+        producto.stock = request.POST['stock']
+        producto.tipo_producto = request.POST['tipo_producto']
+        if 'imagen' in request.FILES:
+            producto.imagen = request.FILES['imagen']
+        producto.save()
+        return redirect('PaginaPrincipal')  # Redirige a la página principal o a donde prefieras después de guardar
+    context = {
+        'producto': producto
+    }
+    return render(request, 'gestion/editar_productos.html', context)

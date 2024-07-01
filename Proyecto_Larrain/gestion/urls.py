@@ -12,4 +12,5 @@ urlpatterns=[
     path('registro', views.registrar_cliente, name='registro'),
     path('ofertas', views.ofertas,name='ofertas'),
     path('agregarOfertas', views.agregar_ofertas,name='agregarOfertas'),
+    path('editar_productos/<str:pk>',views.editar_productos,name="editar_productos"),
 ]
