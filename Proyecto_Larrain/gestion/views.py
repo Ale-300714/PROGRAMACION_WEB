@@ -4,10 +4,16 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import  UsuarioForm , OfertaForm
+from .forms import  UsuarioForm , OfertaForm , ClienteForm
 from django.utils import timezone
+from django.contrib.auth import get_user_model
 
 # Create your views here.
+def index(request):
+    user = request.user
+    print(user)
+    context = {'user':user}                                                           
+    return render(request,'gestion/PaginaPrincipal.html',context)
 
 def Pagina_Principal(request):
     tipo_producto = request.GET.get('tipo_producto')
@@ -24,8 +30,14 @@ def Pagina_Principal(request):
 
     if not productos.exists():
         productos = []
+    
+    User = get_user_model()
+    if request.user.is_authenticated and request.user.groups.filter(name='Agentes').exists():
+        es_agente = True
+    else:
+        es_agente = False
 
-    return render(request, 'gestion/Pagina_Principal.html', {'productos': productos, 'tipo_producto': tipo_producto, 'buscar_producto': buscar_producto})
+    return render(request, 'gestion/Pagina_Principal.html', {'productos': productos, 'tipo_producto': tipo_producto, 'buscar_producto': buscar_producto,'es_agente': es_agente})
 
 def quienes_somos(request):
     context={}
@@ -79,23 +91,16 @@ def perfil(request):
     except:
         print("Error, perfil no existe...")
         return redirect('PaginaPrincipal')
-def registro_cliente(request):
+def registrar_cliente(request):
     if request.method == 'POST':
-        user_form = UsuarioForm(request.POST)
-        if user_form.is_valid():
-            user = user_form.save(commit=False)
-            user.set_password(user_form.cleaned_data['password'])
-            user.save()
-            login(request, user)
-            return redirect('PaginaPrincipal')
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('PaginaPrincipal')  # Redirige a la página principal u otra página después del registro
     else:
-        user_form = UsuarioForm()
-    
-    context = {
-        'user_form': user_form,
-    }
-    return render(request, 'gestion/registro.html', context)
-
+        form = ClienteForm()
+    return render(request, 'gestion/registro.html', {'form': form})
+@login_required
 def ofertas(request):
     hoy = timezone.now().date()
     ofertas = Oferta.objects.filter(fecha_inicio__lte=hoy, fecha_fin__gte=hoy)
@@ -111,6 +116,4 @@ def agregar_ofertas(request):
     else:
         form= OfertaForm()
     return render(request,'gestion/agregar_ofertas.html', {'form':form})
-
-
 
