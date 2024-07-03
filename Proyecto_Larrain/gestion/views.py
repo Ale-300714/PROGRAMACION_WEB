@@ -4,9 +4,10 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import  UsuarioForm , OfertaForm , ClienteForm
+from .forms import  UsuarioForm , OfertaForm , ClienteForm , ProductoForm
 from django.utils import timezone
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -109,9 +110,16 @@ def registrar_cliente(request):
 
 def ofertas(request):
     hoy = timezone.now().date()
+    User = get_user_model()
+    if request.user.is_authenticated and request.user.groups.filter(name='Agentes').exists():
+        es_agente = True
+    else:
+        es_agente = False
     ofertas = Oferta.objects.filter(fecha_inicio__lte=hoy, fecha_fin__gte=hoy)
     print(f"Ofertas activas: {ofertas}")
-    return render(request, 'gestion/ofertas.html', {'ofertas': ofertas})
+    return render(request, 'gestion/ofertas.html', {'ofertas': ofertas, 'es_agente':es_agente})
+
+    
 
 def agregar_ofertas(request):
     if request.method =='POST':
@@ -127,7 +135,7 @@ def agregar_ofertas(request):
 def editar_productos(request, pk):
     producto = get_object_or_404(Productos, pk=pk)
     if request.method == 'POST':
-        # Aquí procesas el formulario enviado y guardas los cambios
+        
         producto.nombre_producto = request.POST['nombre_producto']
         producto.descripcion = request.POST['descripcion']
         producto.precio = request.POST['precio']
@@ -136,8 +144,33 @@ def editar_productos(request, pk):
         if 'imagen' in request.FILES:
             producto.imagen = request.FILES['imagen']
         producto.save()
-        return redirect('PaginaPrincipal')  # Redirige a la página principal o a donde prefieras después de guardar
+        return redirect('PaginaPrincipal') 
     context = {
         'producto': producto
     }
     return render(request, 'gestion/editar_productos.html', context)
+
+def carrito_compras(request):
+    context={}
+    Pagina_Principal
+    return render(request, 'gestion/carrito.html', context)
+
+def eliminar_oferta(request, oferta_id):
+    oferta = get_object_or_404(Oferta, id=oferta_id)
+    
+    if request.method == 'POST':
+        oferta.delete()
+        messages.success(request, 'La oferta ha sido eliminada exitosamente.')
+        return redirect('ofertas') 
+    
+    return render(request, 'gestion/eliminar_oferta.html', {'oferta': oferta})
+
+def agregar_producto(request):
+    if request.method == 'POST':
+        form = ProductoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('PaginaPrincipal')
+    else:
+        form = ProductoForm()
+    return render(request, 'gestion/agregar_productos.html', {'form': form})

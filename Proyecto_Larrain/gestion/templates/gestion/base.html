@@ -31,9 +31,16 @@
                         <a class="nav-link" href="{% url 'agregarOfertas' %}">Agregar Ofertas</a>
                     </li>
                     {% endif %}
+
+                    {% if supervisor %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'agregarProductos' %}">Agregar Productos</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Importar por ti</a>
                     </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'DondeEncontranos' %}">¿Donde Encontrarnos?</a>
                     </li>
@@ -44,9 +51,14 @@
                     <li class="nav-item">
                         <a class="nav-link"  href="#">Proveedores</a>
                     </li>
+
+                    <button class="btn btn-outline-secondary" type="button">
+                        <a href="{% url 'carrito' %}"><img src="{% static 'imagenes/carrito.png' %}" width="24" height="24" alt="Carrito"></a>
+                    </button>
                 </ul>
                 <form method="get" action="">
                     <div class="input-group mb-3">
+                        
                         <input class="form-control" type="text" name="buscar_producto" placeholder="Buscar por nombre" value="{{ buscar_producto }}">
                         <button class="btn btn-outline-secondary" type="submit">Buscar</button>
                     </div>

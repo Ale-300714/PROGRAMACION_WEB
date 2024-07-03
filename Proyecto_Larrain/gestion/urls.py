@@ -13,4 +13,7 @@ urlpatterns=[
     path('ofertas', views.ofertas,name='ofertas'),
     path('agregarOfertas', views.agregar_ofertas,name='agregarOfertas'),
     path('editar_productos/<str:pk>',views.editar_productos,name="editar_productos"),
+    path('carrito', views.carrito_compras, name='carrito'),
+    path('eliminar_oferta/<int:oferta_id>/', views.eliminar_oferta, name='eliminar_oferta'),
+    path('agregarProductos', views.agregar_producto, name='agregarProductos'),
 ]

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Cliente
+from .models import Cliente , Productos
 
 from django.forms import ModelForm
 from .models import Oferta
@@ -32,3 +32,8 @@ class ClienteForm(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ['nombre', 'apellido_paterno', 'email', 'contraseña', 'direccion', 'telefono']
+
+class ProductoForm(forms.ModelForm):
+    class Meta:
+        model = Productos
+        fields = ['nombre_producto', 'descripcion', 'precio', 'stock', 'tipo_producto', 'imagen']

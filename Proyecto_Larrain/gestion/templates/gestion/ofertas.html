@@ -26,6 +26,9 @@
                     </h5>
                     
                     <button type="submit" class="btn btn-primary">Comprar</button>
+                    {% if es_agente %}
+                        <a href="{% url 'eliminar_oferta' oferta.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
             
                 </div>
             </div>

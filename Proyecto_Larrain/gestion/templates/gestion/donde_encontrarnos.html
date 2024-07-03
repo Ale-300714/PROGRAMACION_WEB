@@ -27,6 +27,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'ofertas'%}">Ofertas</a>
                     </li>
+                    {% if es_agente %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'agregarOfertas' %}">Agregar Ofertas</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="#">Importar por ti</a>
                     </li>
@@ -40,6 +45,9 @@
                     <li class="nav-item">
                         <a class="nav-link"  href="#">Proveedores</a>
                     </li>
+                    <button class="btn btn-outline-secondary" type="button">
+                        <a href="{% url 'carrito' %}"><img src="{% static 'imagenes/carrito.png' %}" width="25" height="25" alt="Carrito"></a>
+                    </button>
                 </ul>
                 <div class="d-flex">
                     {% if user.is_authenticated %}
