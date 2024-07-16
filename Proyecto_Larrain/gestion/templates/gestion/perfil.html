@@ -3,31 +3,44 @@
 {% block content %}
 <div class="container">
     {% if user %}
-        <h1>Perfil</h1>
         <form action="{% url 'perfil' %}" method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="first_name" class="form-label">Nombre</label>
-                {{ form.first_name }}
+                {{ user_form.first_name }}
             </div>
             <div class="mb-3">
                 <label for="last_name" class="form-label">Apellido Paterno</label>
-                {{ form.last_name }}
+                {{ user_form.last_name }}
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Correo</label>
-                {{ form.email }}
+                {{ user_form.email }}
             </div>
-
             <div class="mb-3">
                 <label for="username" class="form-label">Usuario</label>
-                {{ form.username }}
+                {{ user_form.username }}
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Contraseña</label>
-                {{ form.password }}
+                {{ user_form.password }}
             </div>
-            
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre del Cliente</label>
+                {{ cliente_form.nombre }}
+            </div>
+            <div class="mb-3">
+                <label for="apellido_paterno" class="form-label">Apellido Paterno del Cliente</label>
+                {{ cliente_form.apellido_paterno }}
+            </div>
+            <div class="mb-3">
+                <label for="direccion" class="form-label">Dirección</label>
+                {{ cliente_form.direccion }}
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Teléfono</label>
+                {{ cliente_form.telefono }}
+            </div>
             <div class="d-grid gap-2">
                 <input type="submit" class="btn btn-primary" name="opcion" value="Guardar Cambios">
             </div>

@@ -16,4 +16,5 @@ urlpatterns=[
     path('carrito', views.carrito_compras, name='carrito'),
     path('eliminar_oferta/<int:oferta_id>/', views.eliminar_oferta, name='eliminar_oferta'),
     path('agregarProductos', views.agregar_producto, name='agregarProductos'),
+    path('registroUsuario/', views.registrar_usuario, name='registroUsuario'),
 ]

@@ -5,14 +5,18 @@ from .models import Cliente , Productos
 from django.forms import ModelForm
 from .models import Oferta
 class UsuarioForm(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput, required=False)  # No requerido
+
     class Meta:
         model = User
-        fields = ['first_name','last_name','email', 'username']
-        widgets = {'first_name':forms.TextInput(attrs={'class':'form-control'}),
-                   'last_name':forms.TextInput(attrs={'class':'form-control'}),
-                   'email':forms.EmailInput(attrs={'class':'form-control'}),
-                   'username':forms.TextInput(attrs={'class':'form-control'}),
-                   }
+        fields = ['first_name', 'last_name', 'email', 'username', 'password']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'username': forms.TextInput(attrs={'class': 'form-control'}),
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 
 class OfertaForm(ModelForm):
     class Meta:
@@ -27,13 +31,19 @@ class OfertaForm(ModelForm):
         }   
 
 class ClienteForm(forms.ModelForm):
-    contraseña = forms.CharField(widget=forms.PasswordInput)
-
     class Meta:
         model = Cliente
-        fields = ['nombre', 'apellido_paterno', 'email', 'contraseña', 'direccion', 'telefono']
+        fields = ['nombre', 'apellido_paterno', 'email', 'direccion', 'telefono']
 
 class ProductoForm(forms.ModelForm):
     class Meta:
         model = Productos
         fields = ['nombre_producto', 'descripcion', 'precio', 'stock', 'tipo_producto', 'imagen']
+
+class UserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+

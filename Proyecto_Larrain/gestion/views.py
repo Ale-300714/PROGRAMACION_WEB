@@ -1,10 +1,10 @@
 from django.shortcuts import render , redirect , get_object_or_404
-from .models import Productos , Oferta
+from .models import Productos , Oferta , Cliente
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import  UsuarioForm , OfertaForm , ClienteForm , ProductoForm
+from .forms import  UserForm , OfertaForm , ClienteForm , ProductoForm , UsuarioForm
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib import messages
@@ -80,33 +80,71 @@ def logout_sesion(request):
 @login_required
 def perfil(request):
     try:
-        user = User.objects.get(username=request.user)
-        context = {}
-        if user:
-            print("Perfil...")
-            if request.method == "POST":
-                print("Edit, es un post...")
-                form = UsuarioForm(request.POST,instance=request.user)
-                form.save()
+        user = User.objects.get(username=request.user.username)
+        cliente = Cliente.objects.get(user=user)  # Obtener el cliente relacionado con el usuario
+
+        if request.method == "POST":
+            user_form = UsuarioForm(request.POST, instance=user)
+            cliente_form = ClienteForm(request.POST, instance=cliente)
+            if user_form.is_valid() and cliente_form.is_valid():
+                # Manejar el cambio de contraseña
+                password = user_form.cleaned_data.get('password')
+                if password:
+                    user.set_password(password)  # Hashear la nueva contraseña
+                else:
+                    # Mantener la contraseña existente
+                    user.password = user.__class__.objects.get(pk=user.pk).password
+
+                user_form.save()
+                cliente_form.save()
                 return redirect('PaginaPrincipal')
-            else:
-                print("Edit, no es un post...")
-                form = UsuarioForm(instance=request.user)
-                mensaje = ""
-                context = {"user":user,"form":form,"mensaje":mensaje}
-                return render(request,'gestion/perfil.html',context)
-    except:
-        print("Error, perfil no existe...")
+        else:
+            user_form = UsuarioForm(instance=user)
+            cliente_form = ClienteForm(instance=cliente)
+
+        context = {
+            "user_form": user_form,
+            "cliente_form": cliente_form,
+        }
+        return render(request, 'gestion/perfil.html', context)
+    except User.DoesNotExist:
+        return redirect('PaginaPrincipal')
+    except Cliente.DoesNotExist:
         return redirect('PaginaPrincipal')
 def registrar_cliente(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('PaginaPrincipal')  # Redirige a la página principal u otra página después del registro
+            cliente = form.save()
+            request.session['cliente_id'] = cliente.id  # Guardar el cliente_id en la sesión
+            return redirect('registroUsuario')  # Redirige a la función para registrar el usuario
     else:
         form = ClienteForm()
     return render(request, 'gestion/registro.html', {'form': form})
+
+def registrar_usuario(request):
+    cliente_id = request.session.get('cliente_id')
+    if not cliente_id:
+        return redirect('registrar_cliente')  # Si no hay cliente_id en la sesión, redirigir a registrar cliente
+
+    if request.method == 'POST':
+        user_form = UserForm(request.POST)
+        if user_form.is_valid():
+            user = user_form.save(commit=False)
+            user.set_password(user_form.cleaned_data['password'])
+            user.save()
+            
+            # Asignar el user al cliente
+            cliente = Cliente.objects.get(id=cliente_id)
+            cliente.user = user
+            cliente.save()
+
+            del request.session['cliente_id']  # Eliminar cliente_id de la sesión después de usarlo
+
+            return redirect('PaginaPrincipal')  # Redirige a la página principal u otra página después del registro
+    else:
+        user_form = UserForm()
+    return render(request, 'gestion/registro_usuario.html', {'user_form': user_form})
 
 def ofertas(request):
     hoy = timezone.now().date()
