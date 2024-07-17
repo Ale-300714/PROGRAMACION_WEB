@@ -13,8 +13,12 @@ urlpatterns=[
     path('ofertas', views.ofertas,name='ofertas'),
     path('agregarOfertas', views.agregar_ofertas,name='agregarOfertas'),
     path('editar_productos/<str:pk>',views.editar_productos,name="editar_productos"),
-    path('carrito', views.carrito_compras, name='carrito'),
+    path('carrito', views.carrito, name='carrito'),
     path('eliminar_oferta/<int:oferta_id>/', views.eliminar_oferta, name='eliminar_oferta'),
     path('agregarProductos', views.agregar_producto, name='agregarProductos'),
     path('registroUsuario/', views.registrar_usuario, name='registroUsuario'),
+    path('perfil_User',views.perfil_user,name='perfil_User'),
+    path('detalle_producto/<str:pk>', views.detalle_producto, name='detalle_producto'),
+    path('agregar_al_carrito/<str:pk>/', views.agregar_al_carrito, name='agregar_al_carrito'),
+    path('eliminar_del_carrito/<str:pk>/', views.eliminar_del_carrito, name='eliminar_del_carrito'),
 ]

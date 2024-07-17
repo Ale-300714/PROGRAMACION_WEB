@@ -1,10 +1,10 @@
 from django.shortcuts import render , redirect , get_object_or_404
-from .models import Productos , Oferta , Cliente
+from .models import Productos , Oferta , Cliente , Carrito
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .forms import  UserForm , OfertaForm , ClienteForm , ProductoForm , UsuarioForm
+from .forms import  UserForm , OfertaForm , ClienteForm , ProductoForm , UsuarioForm,Perfil_form
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from django.contrib import messages
@@ -188,9 +188,12 @@ def editar_productos(request, pk):
     }
     return render(request, 'gestion/editar_productos.html', context)
 
-def carrito_compras(request):
-    context={}
-    Pagina_Principal
+def carrito(request):
+    productos_carrito = Carrito.objects.filter(usuario=request.user)
+
+    context = {
+        'productos_carrito': productos_carrito,
+    }
     return render(request, 'gestion/carrito.html', context)
 
 def eliminar_oferta(request, oferta_id):
@@ -212,3 +215,78 @@ def agregar_producto(request):
     else:
         form = ProductoForm()
     return render(request, 'gestion/agregar_productos.html', {'form': form})
+
+@login_required
+def perfil_user(request):
+    User = get_user_model()
+    
+    
+    es_agente = request.user.is_authenticated and request.user.groups.filter(name='Agentes').exists()
+
+    
+    supervisor = request.user.is_authenticated and request.user.groups.filter(name='Supervisor_Local').exists()
+
+    try:
+        user = User.objects.get(username=request.user.username)
+
+        if request.method == "POST":
+            print("Edit, es un post...")
+            form = Perfil_form(request.POST, instance=user)
+            if form.is_valid():
+                form.save()
+                return redirect('PaginaPrincipal')
+        else:
+            print("Edit, no es un post...")
+            form = Perfil_form(instance=user)
+        
+        context = {
+            "user": user,
+            "form": form,
+            "es_agente": es_agente,
+            "supervisor": supervisor,
+        }
+        return render(request, 'gestion/perfil_user.html', context)
+    
+    except User.DoesNotExist:
+        print("Error, perfil no existe...")
+        return redirect('PaginaPrincipal')
+    
+def detalle_producto(request, pk):
+    producto = get_object_or_404(Productos, pk=pk)
+    return render(request, 'gestion/detalle_producto.html', {'producto': producto})
+
+@login_required
+def agregar_al_carrito(request, pk):
+    if request.method == 'POST':
+        cantidad = int(request.POST.get('cantidad', 1)) 
+        producto = Productos.objects.get(pk=pk)  
+       
+        carrito, created = Carrito.objects.get_or_create(
+            usuario=request.user,
+            producto=producto
+        )
+        
+        
+        if not created:
+            carrito.cantidad += cantidad
+            carrito.save()
+        else:
+            carrito.cantidad = cantidad
+            carrito.save()
+
+        return redirect('detalle_producto', pk=pk)  
+
+    
+    return redirect('PaginaPrincipal')  
+
+def eliminar_del_carrito(request, pk):
+    
+    carrito_producto = get_object_or_404(Carrito, pk=pk)
+
+    
+    if carrito_producto.usuario == request.user:
+        
+        carrito_producto.delete()
+
+    
+    return redirect('carrito')

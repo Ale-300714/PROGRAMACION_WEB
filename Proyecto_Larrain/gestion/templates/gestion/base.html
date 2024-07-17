@@ -71,7 +71,11 @@
                                     {{ user.username }}
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                                    {% if es_agente or supervisor %}
+                                        <li><a class="dropdown-item" href="{% url 'perfil_User' %}">Perfil_Usuario</a></li>
+                                    {% else %}
+                                        <li><a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a></li>
+                                    {% endif %}
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="{% url 'logout_sesion' %}">Cerrar Sesión</a></li>
                                 </ul>

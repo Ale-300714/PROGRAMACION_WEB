@@ -106,5 +106,9 @@ class Despacho(models.Model):
     def __str__(self) :
         return f"Despachoi {self.id} - {self.pedido.id}"
 
-
+class Carrito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
+    creado_en = models.DateTimeField(auto_now_add=True)
 
