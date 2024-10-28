@@ -1,0 +1,22 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Carrito de Compras</h2>
+    <div class="row">
+        {% for item in productos_carrito %}
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <img src="{{ item.producto.imagen.url }}" class="card-img-top" alt="{{ item.producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.producto.nombre }}</h5>
+                    <p class="card-text">Precio: ${{ item.producto.precio }}</p>
+                    <p class="card-text">Cantidad: {{ item.cantidad }}</p>
+                    <a href="{% url 'eliminar_del_carrito' item.pk %}" class="btn btn-danger">Eliminar</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

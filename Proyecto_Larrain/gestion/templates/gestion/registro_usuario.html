@@ -1,0 +1,39 @@
+{% extends 'gestion/base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="card-title">Registrar Usuario</h5>
+                        <form method="post" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_username" class="form-label">Nombre de Usuario</label>
+                                {{ user_form.username }}
+                                <div class="invalid-feedback">
+                                    Este campo es obligatorio.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_email" class="form-label">Correo Electrónico</label>
+                                {{ user_form.email }}
+                                <div class="invalid-feedback">
+                                    Ingresa un correo electrónico válido.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_password" class="form-label">Contraseña</label>
+                                {{ user_form.password }}
+                                <div class="invalid-feedback">
+                                    La contraseña es requerida.
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
